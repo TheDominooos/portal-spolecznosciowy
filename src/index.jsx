@@ -1,5 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+// eslint-disable-next-line
+//import bootstrap from "bootstrap";
 import "./style/index.scss";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
