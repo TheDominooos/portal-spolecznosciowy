@@ -1,12 +1,17 @@
-.Posts {
-  width: 85%;
-  height: 15vw;
-  margin-top: 2vw;
-  margin-bottom: 2vw;
+.Register {
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  height: 32vw;
+  width: 50vw;
   background-color: #9cb770;
   color: white;
+  text-align: center;
   border-radius: 3vw;
   -webkit-box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
   -moz-box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
   box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
+}
+.Register input {
+  display: block;
+  margin: auto;
 }
