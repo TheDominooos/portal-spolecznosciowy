@@ -7,13 +7,15 @@ function Login() {
 
   function getToken(e) {
     e.preventDefault();
-    const params = new URLSearchParams();
-    params.append("username", username);
-    params.append("password", password);
+    const loginInfo = new URLSearchParams();
+    loginInfo.append("username", username);
+    loginInfo.append("password", password);
 
-    axios.post("http://192.168.5.27:8000/token/", params).then((response) => {
-      console.log(response.data.access_token);
-    });
+    axios
+      .post("http://192.168.5.27:8000/token/", loginInfo)
+      .then((response) => {
+        console.log(response.data.access_token);
+      });
   }
   return (
     <div className="Login d-flex justify-content-center align-items-center mx-auto">
