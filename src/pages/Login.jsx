@@ -10,9 +10,8 @@ function Login() {
     const loginInfo = new URLSearchParams();
     loginInfo.append("username", username);
     loginInfo.append("password", password);
-
     axios
-      .post("http://192.168.5.27:8000/token/", loginInfo)
+      .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
       .then((response) => {
         console.log(response.data.access_token);
       });

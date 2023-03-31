@@ -18,7 +18,7 @@ function Register() {
   function sendCreationRequest(e) {
     e.preventDefault();
     axios
-      .post("http://192.168.5.27:8000/users/", accountDetails)
+      .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
       .then((response) => {
         console.log(response);
       });
