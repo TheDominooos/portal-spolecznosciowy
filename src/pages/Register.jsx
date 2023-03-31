@@ -6,6 +6,7 @@ function Register() {
   const [name, updateName] = useState("");
   const [surname, updateSurname] = useState("");
   const [password, updatePassword] = useState("");
+  const [returnMessage, updateMessage] = useState("");
   const accountDetails = {
     username: username,
     name: name,
@@ -17,11 +18,16 @@ function Register() {
 
   function sendCreationRequest(e) {
     e.preventDefault();
-    axios
-      .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
-      .then((response) => {
-        console.log(response);
-      });
+    try {
+      axios
+        .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
+        .then((response) => {
+          console.log(response);
+          updateMessage("Rejestracja zakończona sukcesem!");
+        });
+    } catch (error) {
+      updateMessage("Coś poszło nie tak :(");
+    }
   }
   return (
     <div className="Register d-flex justify-content-center align-items-center mx-auto">
@@ -59,6 +65,7 @@ function Register() {
           maxLength={20}
         ></input>
         <input type="submit" value="Zarejestruj się"></input>
+        <p>{returnMessage}</p>
       </form>
     </div>
   );

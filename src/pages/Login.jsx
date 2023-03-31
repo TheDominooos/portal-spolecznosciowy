@@ -1,20 +1,30 @@
 import { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-
+  const [returnMessage, updateMessage] = useState("");
+  const navigate = useNavigate();
   function getToken(e) {
     e.preventDefault();
     const loginInfo = new URLSearchParams();
     loginInfo.append("username", username);
     loginInfo.append("password", password);
-    axios
-      .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
-      .then((response) => {
-        console.log(response.data.access_token);
-      });
+    try {
+      axios
+        .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
+        .then((response) => {
+          console.log(response.data.access_token);
+          updateMessage(
+            "Pomyślnie zalogowano! Za chwilę nastąpi przekierowanie na stronę główną!"
+          );
+          setTimeout(() => navigate("/"), 5000);
+        });
+    } catch (error) {
+      updateMessage("Błędne dane logowania!");
+    }
   }
   return (
     <div className="Login d-flex justify-content-center align-items-center mx-auto">
@@ -36,6 +46,9 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         <input type="submit" value="Zaloguj się"></input>
+        <p>
+          <b>{returnMessage}</b>
+        </p>
       </form>
     </div>
   );
