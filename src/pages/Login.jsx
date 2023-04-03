@@ -16,7 +16,8 @@ function Login() {
       axios
         .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
         .then((response) => {
-          console.log(response.data.access_token);
+          localStorage.setItem("token", response.data.access_token);
+          console.log(localStorage.getItem("token"));
           updateMessage(
             "Pomyślnie zalogowano! Za chwilę nastąpi przekierowanie na stronę główną!"
           );
