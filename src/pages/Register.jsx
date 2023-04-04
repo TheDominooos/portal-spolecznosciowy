@@ -15,8 +15,6 @@ function Register() {
     avatar_url: "",
     description: "",
     password: password,
-    disabled: false,
-    is_admin: false,
   };
 
   function sendCreationRequest(e) {
@@ -40,7 +38,7 @@ function Register() {
           type="text"
           value={username}
           onChange={(e) => updateUsername(e.target.value)}
-          //maxLength={20}
+          maxLength={20}
         ></input>
         <label>Imię</label>
         <input
