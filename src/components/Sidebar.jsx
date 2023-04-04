@@ -11,12 +11,17 @@ function Sidebar() {
   const [avatarURL, getAvatarURL] = useState("");
 
   useEffect(() => {
-    axios.get(process.env.REACT_APP_DATABASE_IP + "/me").then((response) => {
-      getName(response.data.name);
-      getSurname(response.data.surname);
-      getDescription(response.data.description);
-      getAvatarURL(response.data.avatar_url);
-    });
+    axios
+      .get(process.env.REACT_APP_DATABASE_IP + "/me")
+      .then((response) => {
+        getName(response.data.name);
+        getSurname(response.data.surname);
+        getDescription(response.data.description);
+        getAvatarURL(response.data.avatar_url);
+      })
+      .catch((error) => {
+        localStorage.removeItem("token");
+      });
   });
 
   return (
