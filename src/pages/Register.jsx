@@ -7,25 +7,29 @@ function Register() {
   const [surname, updateSurname] = useState("");
   const [password, updatePassword] = useState("");
   const [returnMessage, updateMessage] = useState("");
+
   const accountDetails = {
     username: username,
     name: name,
     surname: surname,
+    avatar_url: "",
+    description: "",
     password: password,
+    disabled: false,
+    is_admin: false,
   };
 
   function sendCreationRequest(e) {
     e.preventDefault();
-    try {
-      axios
-        .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
-        .then((response) => {
-          console.log(response);
-          updateMessage("Rejestracja zakończona sukcesem!");
-        });
-    } catch (error) {
-      updateMessage("Coś poszło nie tak :(");
-    }
+
+    console.log(accountDetails);
+    axios
+      .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
+      .then((response) => {
+        console.log(response);
+        updateMessage("Rejestracja zakończona sukcesem!");
+      })
+      .catch((error) => updateMessage("Coś poszło nie tak "));
   }
   return (
     <div className="Register d-flex justify-content-center align-items-center mx-auto">

@@ -12,20 +12,18 @@ function Login() {
     const loginInfo = new URLSearchParams();
     loginInfo.append("username", username);
     loginInfo.append("password", password);
-    try {
-      axios
-        .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
-        .then((response) => {
-          localStorage.setItem("token", response.data.access_token);
-          console.log(localStorage.getItem("token"));
-          updateMessage(
-            "Pomyślnie zalogowano! Za chwilę nastąpi przekierowanie na stronę główną!"
-          );
-          setTimeout(() => navigate("/"), 5000);
-        });
-    } catch (error) {
-      updateMessage("Błędne dane logowania!");
-    }
+
+    axios
+      .post(process.env.REACT_APP_DATABASE_IP + "/token/", loginInfo)
+      .then((response) => {
+        localStorage.setItem("token", response.data.access_token);
+        console.log(localStorage.getItem("token"));
+        updateMessage(
+          "Pomyślnie zalogowano! Za chwilę nastąpi przekierowanie na stronę główną!"
+        );
+        setTimeout(() => navigate("/"), 5000);
+      })
+      .catch((error) => updateMessage("Błędne dane logowania!"));
   }
   return (
     <div className="Login d-flex justify-content-center align-items-center mx-auto">
