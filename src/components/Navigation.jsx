@@ -15,8 +15,18 @@ function Navigation() {
         </Link>
 
         <Link to="login">
-          <button className="navigation-button">Login</button>
+          <button className="navigation-button">Change account</button>
         </Link>
+        {localStorage.getItem("token") == null ? null : (
+          <button
+            onClick={() => {
+              localStorage.removeItem("token");
+            }}
+            className="navigation-button"
+          >
+            Log out
+          </button>
+        )}
 
         <Link to="register">
           <button className="navigation-button">Register</button>
