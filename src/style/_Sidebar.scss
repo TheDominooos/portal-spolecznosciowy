@@ -1,8 +1,28 @@
-.Sidebar {
-  width: 20vw;
+.account {
+  width: 18vw;
+  margin-top: 2vw;
+  margin-bottom: 2vw;
   float: left;
+  background-color: white;
+  border-radius: 0.5vw;
+  -webkit-box-shadow: 2px 2px 6px -1px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 2px 2px 6px -1px rgba(66, 68, 90, 1);
+  box-shadow: 2px 2px 6px -1px rgba(66, 68, 90, 1);
 }
-.Sidebar img {
+.account img {
   width: 5vw;
   border-radius: 100%;
+}
+.new-post-container {
+  background-color: white;
+  width: 18vw;
+  height: 30vw;
+  margin-top: 2vw;
+  float: left;
+  margin-bottom: 2vw;
+  border-style: solid;
+}
+.new-post-container textarea {
+  width: 100%;
+  height: 90%;
 }

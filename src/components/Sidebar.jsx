@@ -18,20 +18,29 @@ function Sidebar() {
         getSurname(response.data.surname);
         getDescription(response.data.description);
         getAvatarURL(response.data.avatar_url);
+        localStorage.setItem("userID", response.data.id);
       })
       .catch((error) => {
+        console.error(error);
         localStorage.removeItem("token");
       });
   });
 
   return (
-    <div className="Sidebar">
-      <p>
-        <img alt="avatar" src={avatarURL} />
-        {name}
-        {surname}
-      </p>
-      <p>{description}</p>
+    <div className="sidebar-container">
+      <div className="account">
+        <img alt="" src={avatarURL} />
+        <p>
+          {name} {surname}
+        </p>
+        <p>{description}</p>
+      </div>
+      <div className="new-post-container">
+        <form>
+          <textarea></textarea>
+          <input type="submit" value="Dodaj post"></input>
+        </form>
+      </div>
     </div>
   );
 }

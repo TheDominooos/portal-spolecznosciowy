@@ -1,21 +1,27 @@
 .Post {
-  width: 85%;
-  height: 15vw;
+  width: 90%;
+  min-height: 15vw;
+  height: fit-content;
   margin-top: 2vw;
   margin-bottom: 2vw;
-  background-color: #9cb770;
-  color: white;
-  border-radius: 3vw;
-  -webkit-box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
-  -moz-box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
-  box-shadow: 8px 8px 24px 0px rgba(156, 183, 112, 1);
+  background-color: white;
+  border-radius: 0.5vw;
+  -webkit-box-shadow: 2px 2px 6px -1px rgba(66, 68, 90);
+  -moz-box-shadow: 2px 2px 6px -1px rgba(66, 68, 90);
+  box-shadow: 2px 2px 6px -1px rgba(66, 68, 90);
 }
-.PostTitle {
+.post-title {
+  float: left;
   font-size: 2vw;
   margin-left: 5vw;
   text-align: left;
 }
-.PostContent {
+.post-author {
+  float: right;
+  margin-right: 5vw;
+}
+.post-content {
+  clear: both;
   margin-left: 5vw;
   margin-right: 5vw;
   text-align: left;
