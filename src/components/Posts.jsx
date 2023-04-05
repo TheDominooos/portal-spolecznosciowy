@@ -47,7 +47,6 @@ function Posts() {
               usuń posta
             </button>
           ) : null}
-          {post.disabled === true ? <p>POST DISABLED</p> : null}
         </div>
       ))}
     </>
