@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useEffect } from "react";
+import NewPostContainer from "./NewPostContainer";
 
 function Sidebar() {
   const AUTH_TOKEN = localStorage.getItem("token");
@@ -35,12 +36,7 @@ function Sidebar() {
         </p>
         <p>{description}</p>
       </div>
-      <div className="new-post-container">
-        <form>
-          <textarea></textarea>
-          <input type="submit" value="Dodaj post"></input>
-        </form>
-      </div>
+      <NewPostContainer />
     </div>
   );
 }
