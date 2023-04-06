@@ -23,7 +23,7 @@ function Sidebar() {
       })
       .catch((error) => {
         console.error(error);
-        localStorage.removeItem("token");
+        //localStorage.removeItem("token");
       });
   });
 
