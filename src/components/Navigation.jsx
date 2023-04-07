@@ -1,7 +1,10 @@
 import { ReactComponent as List } from "../icons/list.svg";
 import { Outlet, Link } from "react-router-dom";
+import useTokenStore from "../hooks/useToken";
 
 function Navigation() {
+  const token = useTokenStore((state) => state.token);
+  const setToken = useTokenStore((state) => state.setToken);
   return (
     <>
       <nav className="Navigation d-flex justify-content-start align-items-center">
@@ -10,17 +13,23 @@ function Navigation() {
         </button>
         <button className="navigation-button">Keksik</button>
 
-        <Link to="/">
+        {token == null ? (
           <button className="navigation-button">Home</button>
-        </Link>
+        ) : (
+          <Link to="/">
+            <button className="navigation-button">Home</button>
+          </Link>
+        )}
 
         <Link to="login">
           <button className="navigation-button">Change account</button>
         </Link>
-        {localStorage.getItem("token") == null ? null : (
+        {token == null ? null : (
           <button
             onClick={() => {
               localStorage.removeItem("token");
+              setToken(null);
+              console.log("Navigation.jsx: set token to null");
             }}
             className="navigation-button"
           >

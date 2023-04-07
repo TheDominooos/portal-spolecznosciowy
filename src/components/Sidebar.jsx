@@ -1,7 +1,7 @@
 import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import NewPostContainer from "./NewPostContainer";
+import useTokenStore from "../hooks/useToken";
 
 function Sidebar() {
   const AUTH_TOKEN = localStorage.getItem("token");
@@ -10,6 +10,8 @@ function Sidebar() {
   const [surname, getSurname] = useState("");
   const [description, getDescription] = useState("");
   const [avatarURL, getAvatarURL] = useState("");
+
+  const setToken = useTokenStore((state) => state.setToken);
 
   useEffect(() => {
     axios
@@ -22,8 +24,14 @@ function Sidebar() {
         localStorage.setItem("userID", response.data.id);
       })
       .catch((error) => {
-        console.error(error);
-        //localStorage.removeItem("token");
+        error = error.toJSON();
+        console.error(error.message);
+        if (error.status === 401) {
+          localStorage.removeItem("token");
+          setToken(null);
+          console.log("Sidebar.jsx set token to null");
+        }
+        //
       });
   });
 
