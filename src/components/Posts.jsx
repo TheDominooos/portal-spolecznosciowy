@@ -9,21 +9,22 @@ function Posts() {
   const posts = usePostStore((state) => state.posts);
   const setPosts = usePostStore((state) => state.setPosts);
 
-  const [pageCount, setPageCount] = useState(1);
+  const [pageCount, setPageCount] = useState();
+  const [pageNumber, setPageNumber] = useState(1);
 
   function loadPosts() {
     axios
       .get(process.env.REACT_APP_DATABASE_IP + "/posts", {
-        params: { page: pageCount },
+        params: { page: pageNumber },
       })
       .then((response) => {
         let postsArray = response.data.items.reverse();
         postsArray = postsArray.filter((item) => item.disabled === false);
         setPosts(postsArray);
+        setPageCount(response.data.pages);
       });
   }
-  useEffect(loadPosts, []);
-  useEffect(loadPosts, [pageCount]);
+  useEffect(loadPosts, [pageNumber, setPosts]);
 
   function deletePost(postID) {
     axios
@@ -34,14 +35,17 @@ function Posts() {
   }
   return (
     <>
-      <input
-        type="number"
-        name="pageCount"
-        value={pageCount}
-        onChange={(e) => {
-          setPageCount(e.target.value);
-        }}
-      />
+      {Array.from(Array(pageCount).keys()).map((i) => {
+        const pageInnerNumber = i + 1;
+        return (
+          <button
+            key={pageInnerNumber}
+            onClick={() => setPageNumber(pageInnerNumber)}
+          >
+            {pageInnerNumber}
+          </button>
+        );
+      })}
       {posts.map((post) => (
         <div className="Post mx-auto" key={post.id}>
           <div className="post-title">{post.title}</div>
