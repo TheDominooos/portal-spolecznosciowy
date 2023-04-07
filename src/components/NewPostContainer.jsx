@@ -8,26 +8,19 @@ function NewPostContainer() {
   const [title, updateTitle] = useState("");
   const [text, updateText] = useState("");
   const setPosts = usePostStore((state) => state.setPosts);
-  const params = {
-    category: "1a2996e6-98d5-49c4-8619-397f95645325",
-    page: 1,
-    size: 50,
-  };
   function loadPosts() {
-    axios
-      .get(process.env.REACT_APP_DATABASE_IP + "/posts", params)
-      .then((response) => {
-        let postsArray = response.data.items.reverse();
-        postsArray = postsArray.filter((item) => item.disabled === false);
-        setPosts(postsArray);
-      });
+    axios.get(process.env.REACT_APP_DATABASE_IP + "/posts").then((response) => {
+      let postsArray = response.data.items.reverse();
+      postsArray = postsArray.filter((item) => item.disabled === false);
+      setPosts(postsArray);
+    });
   }
   function addPost(e) {
     const post = {
       title: title,
       text: text,
       image_url: "",
-      category_id: "1a2996e6-98d5-49c4-8619-397f95645325",
+      category_id: "efd40b43-9f0b-4975-a58c-e5f52c7ab327",
       disabled: false,
     };
     e.preventDefault();

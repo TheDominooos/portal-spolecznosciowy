@@ -30,7 +30,7 @@ function Register() {
       .then(() => {
         updateMessage("Rejestracja zakończona sukcesem!");
       })
-      .catch(() => updateMessage("Coś poszło nie tak "));
+      .catch((error) => updateMessage("Coś poszło nie tak "));
   }
   return (
     <div className="Register d-flex justify-content-center align-items-center mx-auto">
