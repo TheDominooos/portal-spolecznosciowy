@@ -31,12 +31,9 @@ function NewPostContainer() {
       disabled: false,
     };
     e.preventDefault();
-    axios
-      .post(process.env.REACT_APP_DATABASE_IP + "/posts", post)
-      .then((response) => {
-        console.log(response);
-        loadPosts();
-      });
+    axios.post(process.env.REACT_APP_DATABASE_IP + "/posts", post).then(() => {
+      loadPosts();
+    });
   }
 
   return (

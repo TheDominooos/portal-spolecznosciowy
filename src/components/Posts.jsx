@@ -19,6 +19,7 @@ function Posts() {
       })
       .then((response) => {
         let postsArray = response.data.items.reverse();
+        // usuwanie wyłączonych postów na froncie bo backend tego nie robi ¯\_(ツ)_/¯
         postsArray = postsArray.filter((item) => item.disabled === false);
         setPosts(postsArray);
         setPageCount(response.data.pages);

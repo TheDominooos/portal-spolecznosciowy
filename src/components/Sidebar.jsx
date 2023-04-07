@@ -29,7 +29,6 @@ function Sidebar() {
         if (error.status === 401) {
           localStorage.removeItem("token");
           setToken(null);
-          console.log("Sidebar.jsx set token to null");
         }
         //
       });

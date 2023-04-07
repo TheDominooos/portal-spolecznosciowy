@@ -21,20 +21,25 @@ function Navigation() {
           </Link>
         )}
 
-        <Link to="login">
-          <button className="navigation-button">Change account</button>
-        </Link>
-        {token == null ? null : (
-          <button
-            onClick={() => {
-              localStorage.removeItem("token");
-              setToken(null);
-              console.log("Navigation.jsx: set token to null");
-            }}
-            className="navigation-button"
-          >
-            Log out
-          </button>
+        {token == null ? (
+          <Link to="login">
+            <button className="navigation-button">Log in</button>
+          </Link>
+        ) : (
+          <>
+            <Link to="login">
+              <button className="navigation-button">Change account</button>
+            </Link>
+            <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                setToken(null);
+              }}
+              className="navigation-button"
+            >
+              Log out
+            </button>
+          </>
         )}
 
         <Link to="register">

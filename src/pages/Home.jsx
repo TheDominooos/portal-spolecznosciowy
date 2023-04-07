@@ -12,6 +12,7 @@ function Home() {
   useEffect(() => {
     if (token == null) {
       navigate("/login");
+      console.log("home.jsx: navigating to login");
     }
   }, [token, navigate]);
 

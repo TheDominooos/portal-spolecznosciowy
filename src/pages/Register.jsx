@@ -18,26 +18,25 @@ function Register() {
     description: description,
     password: password,
     is_admin: true,
+    // wszyscy użytkownicy muszą być adminami bo Maks w backendzie zrobił
+    // że tylko admini mogą usuwać posty ¯\_(ツ)_/¯
   };
 
   function sendCreationRequest(e) {
     e.preventDefault();
 
-    console.log(accountDetails);
     axios
       .post(process.env.REACT_APP_DATABASE_IP + "/users/", accountDetails)
-      .then((response) => {
-        console.log(response);
+      .then(() => {
         updateMessage("Rejestracja zakończona sukcesem!");
       })
-      .catch((error) => updateMessage("Coś poszło nie tak "));
+      .catch(() => updateMessage("Coś poszło nie tak "));
   }
   return (
     <div className="Register d-flex justify-content-center align-items-center mx-auto">
       <form onSubmit={sendCreationRequest}>
         <div className="row">
           <div className="col mx-auto">
-            <img src={avatarURL} alt="" />
             <input
               name="avatarURL"
               placeholder="link do avataru"
@@ -51,6 +50,7 @@ function Register() {
               value={description}
               onChange={(e) => updateDescription(e.target.value)}
             ></textarea>
+            <img src={avatarURL} alt="" />
           </div>
           <div className="col mx-auto">
             <input
@@ -88,8 +88,9 @@ function Register() {
             <input type="submit" value="Zarejestruj się"></input>
           </div>
         </div>
-
-        <p>{returnMessage}</p>
+        <p>
+          <b>{returnMessage}</b>
+        </p>
       </form>
     </div>
   );
